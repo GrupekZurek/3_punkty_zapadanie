@@ -15,13 +15,7 @@ try:
     BC_N=E2-E3
     BA_U=-U2+U1
     BC_U=-U2+U3
-    gora=N1 #hej ho, zaraz poprawimy
-    #(P21-P11)*(-P33+P13)-(-P23+P13)*(P31-P11)
-    #gdzie:
-    #P2 to 1
-    #P1 to 2
-    #P3 to 3
-    #rozpatrzyć potem, co by było, gdyby U2-U1<0, a U2-U3<0
+    gora=N1 
     BAxBC_E=BA_N*BC_U-BA_U*BC_N
     BAxBC_N=BA_U*BC_E-BA_E*BC_U
     BAxBC_U=BA_E*BC_N-BA_N*BC_E
