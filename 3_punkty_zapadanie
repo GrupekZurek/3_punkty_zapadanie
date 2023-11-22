@@ -1,0 +1,58 @@
+import math
+try:
+    E1=round(float(input('Podaj E1')),0)
+    N1=round(float(input('Podaj N1')),0)
+    U1=round(float(input('Podaj U1')),0)
+    E2=round(float(input('Podaj E2')),0)
+    N2=round(float(input('Podaj N2')),0)
+    U2=round(float(input('Podaj U2')),0)
+    E3=round(float(input('Podaj E3')),0)
+    N3=round(float(input('Podaj N3')),0)
+    U3=round(float(input('Podaj U3')),0)
+    BA_E=N2-N1
+    BC_E=N2-N3
+    BA_N=E2-E1
+    BC_N=E2-E3
+    BA_U=-U2+U1
+    BC_U=-U2+U3
+    gora=N1 #hej ho, zaraz poprawimy
+    #(P21-P11)*(-P33+P13)-(-P23+P13)*(P31-P11)
+    #gdzie:
+    #P2 to 1
+    #P1 to 2
+    #P3 to 3
+    #rozpatrzyć potem, co by było, gdyby U2-U1<0, a U2-U3<0
+    BAxBC_E=BA_N*BC_U-BA_U*BC_N
+    BAxBC_N=BA_U*BC_E-BA_E*BC_U
+    BAxBC_U=BA_E*BC_N-BA_N*BC_E
+    p_zero=0
+    magnituda=(BAxBC_E**2+BAxBC_N**2+BAxBC_U**2)**(1/2)
+    p_E=BAxBC_E/magnituda
+    p_N=BAxBC_N/magnituda
+    p_U=BAxBC_U/magnituda
+    p_E1 = p_E
+    p_N1 = p_N
+    p_U1 = p_U*(-1)
+    while p_U1<0:
+        p_E1=p_E1*(-1)
+        p_N1=p_N1*(-1)
+        p_U1=p_U1*(-1)
+        p_zero=p_zero+1
+    print(p_zero)
+    if p_E1<0: #cos(alfa)<0
+        pole_trend=math.degrees(math.atan(p_N1/p_E1))
+        plunge=math.degrees(math.asin(p_U1))
+    else:
+        pole_trend=math.degrees(math.atan(p_N1/p_E1))+180
+        plunge=math.degrees(math.asin(p_U1))
+    if pole_trend<270:
+        strike=pole_trend+90
+    else:
+        strike=pole_trend-270
+    dip=90-plunge
+    print(p_zero)
+    print(strike, ' / ', dip)
+    input('Kliknij, by zakończyć')
+
+except:
+    print('elo, jakiś błąd w danych jest. Sprawdź, czy są poprawne')
